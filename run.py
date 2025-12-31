@@ -17,6 +17,10 @@ intents.message_content = True
 ssl._create_default_https_context = ssl._create_unverified_context
 bot = commands.Bot(command_prefix='!', descraption=descraption, intents=intents, help_command=None)
 
+########################
+## To Load all the Cog modules at the begin,
+## You need to use this `load_all_modules` from source folder src/cog/
+########################
 async def load_all_modules():
 	for filename in listdir("src/cog"):
 		module_name = f"src.cog.{filename[:-3]}"
@@ -31,6 +35,11 @@ async def on_ready():
 	print(f"Logged in as {bot.user} (ID: {bot.user.id})")
 	print('--------------------')
 	await load_all_modules()
+	########################
+	## With the Hybrid Command (/) you need this following funciton,
+	## tree.sync will take a time to sync, after bot sttart 
+	## sometimes need restart your discord app to active the / command.
+	########################
 	try:
 		synced = await bot.tree.sync()
 		print(f"Sync Complete {synced}")
@@ -82,6 +91,10 @@ async def on_message(message):
 		await bot.process_commands(message)
 		return
 
+########################
+## We have user basic start bot, if you have your bot activation you can make  
+## I example the activation with Tor check the modules at top  as you need
+########################
 connector = ProxyConnector.from_url("socks5://127.0.0.1:9050")
 session = aiohttp.ClientSession(connector=connector)
 bot.http._HTTPClient__session = session ### This is for proxt connect # this line to skip over proxy
