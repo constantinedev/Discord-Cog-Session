@@ -82,7 +82,7 @@ async def on_message(message):
 		await bot.process_commands(message)
 		return
 
-	connector = ProxyConnector.from_url("socks5://127.0.0.1:9050")
-	session = aiohttp.ClientSession(connector=connector)
-	bot.http._HTTPClient__session = session
-	bot.run(BOTTOKEN, reconnect=True)
+connector = ProxyConnector.from_url("socks5://127.0.0.1:9050")
+session = aiohttp.ClientSession(connector=connector)
+bot.http._HTTPClient__session = session
+bot.run(BOTTOKEN, reconnect=True)
