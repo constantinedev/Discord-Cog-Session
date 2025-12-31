@@ -84,5 +84,5 @@ async def on_message(message):
 
 connector = ProxyConnector.from_url("socks5://127.0.0.1:9050")
 session = aiohttp.ClientSession(connector=connector)
-bot.http._HTTPClient__session = session
+bot.http._HTTPClient__session = session ### This is for proxt connect # this line to skip over proxy
 bot.run(BOTTOKEN, reconnect=True)
